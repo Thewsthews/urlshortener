@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"math/rand"
 	"net/http"
 	"sync"
@@ -34,4 +35,9 @@ type ShortenResponse struct {
 
 func shortenHandler(w http.ResponseWriter, r *http.Request) {
 	var req ShortenRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
 }
