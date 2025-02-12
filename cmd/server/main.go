@@ -15,5 +15,9 @@ var store = struct {
 
 func generateShortURL() string {
 	rand.Seed(time.Now().UnixNano())
-	shortURL
+	shortURL := make([]byte, shortURLLength)
+	for i := range shortURL {
+		shortURL[i] = charset[rand.Intn(len(charset))]
+	}
+	return string(shortURL)
 }
