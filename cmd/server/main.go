@@ -40,17 +40,24 @@ func shortenHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	store.Lock()
+	shortURL := generateShortURL()
+	store.m[shortURL] = req.LongURL
+	store.Unlock()
 
-
-store.Lock()
-shortURL := generateShortURL()
-store.m[shortURL] = req.LongURL
-store.Unlock()
-
-resp := ShortenResponse{ShortURL: "http://localhost:8080/" + shortURL}
-w.Header().Set("Content-Type", "application/json")
-json.NewEncoder(w).Encode(resp)
+	resp := ShortenResponse{ShortURL: "http://localhost:8080/" + shortURL}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(resp)
 }
 
 func redirectHandler(w http.ReponseWriter, r *http.Request) {
-	shortURL := r.URL.Path[1:]
+	store.RLock()
+	longURL, exists := store.m[r.URL.Path[1:]]
+	store.RUnlock()
+
+	if !exists {
+		http.NotFound(w, r)
+		return
+	}
+	http.Redirect(w, r, longURL, http.StatusFound)
+}
