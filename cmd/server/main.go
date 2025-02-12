@@ -50,7 +50,7 @@ func shortenHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(resp)
 }
 
-func redirectHandler(w http.ReponseWriter, r *http.Request) {
+func redirectHandler(w http.ResponseWriter, r *http.Request) {
 	store.RLock()
 	longURL, exists := store.m[r.URL.Path[1:]]
 	store.RUnlock()
@@ -60,4 +60,12 @@ func redirectHandler(w http.ReponseWriter, r *http.Request) {
 		return
 	}
 	http.Redirect(w, r, longURL, http.StatusFound)
+}
+
+func main() {
+	http.HandleFunc("/shorten", shortenHandler)
+	http.HandleFunc("/", redirectHandler)
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		panic(err)
+	}
 }
