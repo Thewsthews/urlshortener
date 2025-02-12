@@ -59,4 +59,5 @@ This project is open-source and available under the MIT License.
 Feel free to submit pull requests or report issues!
 ## Contact
 [Email](etiegnim@gmail.com)
+
 M1
