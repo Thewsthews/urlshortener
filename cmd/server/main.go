@@ -41,3 +41,12 @@ func shortenHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
+store.Lock()
+shortURL := generateShortURL()
+store.m[shortURL] = req.LongURL
+store.Unlock()
+
+resp := ShortenResponse{ShortURL: "http://localhost:8080/" + shortURL}
+w.Header().Set("Content-Type", "application/json")
+json.NewEncoder(w).Encode(resp)
