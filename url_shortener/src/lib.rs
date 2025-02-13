@@ -1,10 +1,11 @@
-use rand::{distribution::Alphanumeric, Rng};
-use std::ffi::{CString, CStr};
+use rand::Alphanumeric;
+use rand::Rng;
+use std::ffi::CString;
 use std::os::raw::c_char;
 
 #[no_mangle]
 pub extern "C" fn generate_short_url()-> *mut c_char{
-    let short_url: String= rabd::thread_rng()
+    let short_url: String= rand::thread_rng()
         .sample_iter(&Alphanumeric)
         .take(7)
         .map(char::from)
