@@ -11,7 +11,7 @@ This is a simple URL shortener built with Go. It provides an API to shorten long
 ### Prerequisites
 - Go 1.18 or later installed
 
-### Steps to Run
+### Steps to Run 🍀
 1. Clone the repository:
    ```sh
    git clone https://github.com/Thewsthews/url-shortener-go.git
