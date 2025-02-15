@@ -2,7 +2,7 @@
 
 This is a simple URL shortener built with Go. It provides an API to shorten long URLs and retrieve the original URL when accessed with the shortened code. The implementation uses an in-memory store (a map), but it can be extended to use a database like Redis or PostgreSQL for persistence.
 
-## Features
+## Features 🎭
 - Shorten long URLs to short, unique codes.
 - Redirect users from the shortened URL to the original URL.
 - Uses an in-memory map for storage.
@@ -11,7 +11,7 @@ This is a simple URL shortener built with Go. It provides an API to shorten long
 ### Prerequisites
 - Go 1.18 or later installed
 
-### Steps to Run
+### Steps to Run 🍀
 1. Clone the repository:
    ```sh
    git clone https://github.com/Thewsthews/url-shortener-go.git
