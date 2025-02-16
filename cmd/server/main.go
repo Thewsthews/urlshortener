@@ -45,3 +45,16 @@ func shortenHandler(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type, "application/json)
 	json.NewEncoder(w).Encode(resp)
 }
+
+//This is the handler responsible for the redirecting of short urls
+func redirectHandler(w hthttp.ResponseWriter, r *http.Request){
+	store.RLock()
+	longURL, exists := store.m[r.URL.Path[1:]]
+	store.RUnlock()
+
+	if !exists{
+		http.NotFound(w,r)
+		return
+	}
+	http.Redirect(w, r, longURL, http.StatusFound)
+}
