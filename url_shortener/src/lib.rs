@@ -1,4 +1,4 @@
-use rand::Alphanumeric;
+use rand::distributions::Alphanumeric;
 use rand::Rng;
 use std::ffi::CString;
 use std::os::raw::c_char;
@@ -20,6 +20,6 @@ pub extern "C" fn free_string(s: *mut c_char){
         if s.is_null(){
             return;
         }
-        CString::from_raw(s);
+        let _ = CString::from_raw(s);
     }
 }
