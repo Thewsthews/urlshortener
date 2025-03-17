@@ -14,8 +14,8 @@ This is a simple URL shortener built with Go. It provides an API to shorten long
 ### Steps to Run 🍀
 1. Clone the repository:
    ```sh
-   git clone https://github.com/Thewsthews/url-shortener-go.git
-   cd url-shortener-go
+   git clone https://github.com/Thewsthews/url-shortener.git
+   cd url-shortener
    ```
 2. Run the application:
    ```sh
