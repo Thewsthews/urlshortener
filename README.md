@@ -1,4 +1,4 @@
-# URL Shortener 〰️
+# URL Shortener 
 
 This is a simple URL shortener built with Go. It provides an API to shorten long URLs and retrieve the original URL when accessed with the shortened code. The implementation uses an in-memory store (a map), but it can be extended to use a database like Redis or PostgreSQL for persistence.
 
